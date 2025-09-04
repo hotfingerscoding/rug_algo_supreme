@@ -1,0 +1,15 @@
+# Build + deps
+node_modules/
+dist/
+apps/**/dist/
+
+# Local data & env
+data/
+.env
+venv/
+
+# Misc
+*.log
+.DS_Store
+
+.git-backup-*/

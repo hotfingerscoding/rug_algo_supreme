@@ -1,0 +1,60 @@
+{
+  "name": "rugs-research",
+  "version": "1.0.0",
+  "description": "Research and analysis tools for rugs.fun",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "quickstart": "bash scripts/quickstart.sh",
+    "smoke": "ts-node scripts/smoke.ts",
+    "system:test": "bash scripts/system_test.sh",
+    "rebuild:sqlite": "pnpm rebuild better-sqlite3",
+    "use:default": "bash scripts/use-profile.sh default",
+    "use:dev": "bash scripts/use-profile.sh dev",
+    "use:lowcpu": "bash scripts/use-profile.sh lowcpu",
+    "build": "pnpm -r build",
+    "clean": "pnpm -r clean",
+    "test": "pnpm -r test",
+    "lint": "pnpm -r lint",
+    "type-check": "pnpm -r type-check",
+    "dev": "pnpm -r dev",
+    "jobs:start": "ts-node jobs/runner.ts",
+    "jobs:run": "ts-node jobs/runner.ts --run",
+    "export:csv": "ts-node scripts/export-csv.ts",
+    "selector:start": "pnpm --filter selector-assistant start",
+    "selector:test": "pnpm --filter selector-assistant run test:selectors",
+    "selectors:apply-latest": "node apps/selector-assistant/scripts/apply-latest.js",
+    "console:collect": "pnpm --filter console-collector start",
+    "console:replay": "pnpm --filter console-collector replay",
+    "console:analyze": "pnpm --filter console-collector analyze",
+    "console:prune": "pnpm --filter console-collector prune-data",
+    "console:health": "pnpm --filter console-collector health",
+    "console:check": "pnpm --filter console-collector check",
+    "console:export-train": "pnpm --filter console-collector export-train",
+    "ci:console-collector": "./scripts/ci-console-collector.sh",
+    "dashboard": "make dashboard",
+    "tail:logs": "ts-node scripts/tail.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "@types/better-sqlite3": "^7.6.8",
+    "typescript": "^5.3.0",
+    "ts-node": "^10.9.1",
+    "node-cron": "^3.0.3"
+  },
+  "dependencies": {
+    "better-sqlite3": "^12.2.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=8.0.0"
+  },
+  "pnpm": {
+    "overrides": {
+      "better-sqlite3": "^12.2.0"
+    }
+  }
+}

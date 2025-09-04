@@ -1,0 +1,5 @@
+🔍 PnL Tracking Debug: active=true, wasActive=false, autobuysEnabled=true, pendingDisableAutobets=false, autoRoundsCompleted=0, pnl=0
+[SOCKET] newSideBet received: {"playerId":"player1","gameId":"game1","username":"testuser","betAmount":100,"xPayout":2.5}
+New trade received: {"id":"trade1","qty":100,"tickIndex":50,"gameId":"game1","type":"buy","playerId":"player1","username":"testuser"}
+New trade received: {"id":"trade2","qty":50,"tickIndex":52,"gameId":"game1","type":"sell","playerId":"player2","username":"testuser2"}
+🔍 PnL Tracking Debug: active=false, wasActive=true, autobuysEnabled=true, pendingDisableAutobets=false, autoRoundsCompleted=1, pnl=25

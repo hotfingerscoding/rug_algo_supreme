@@ -1,0 +1,11 @@
+{
+  "backups": {
+    "keep": 30
+  },
+  "models": {
+    "keep": 20
+  },
+  "exports": {
+    "keep": 14
+  }
+}

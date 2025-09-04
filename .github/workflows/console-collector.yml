@@ -1,0 +1,125 @@
+name: Console Collector CI
+
+on:
+  push:
+    branches: [ main, develop ]
+    paths:
+      - 'apps/console-collector/**'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+  pull_request:
+    branches: [ main, develop ]
+    paths:
+      - 'apps/console-collector/**'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        
+    - name: Setup pnpm
+      uses: pnpm/action-setup@v2
+      with:
+        version: 8
+        
+    - name: Get pnpm store directory
+      shell: bash
+      run: |
+        echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+        
+    - name: Setup pnpm cache
+      uses: actions/cache@v3
+      with:
+        path: ${{ env.STORE_PATH }}
+        key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+        restore-keys: |
+          ${{ runner.os }}-pnpm-store-
+          
+    - name: Install dependencies
+      run: pnpm install
+      
+    - name: Build console-collector
+      run: |
+        cd apps/console-collector
+        pnpm build
+        
+    - name: Run tests
+      run: |
+        cd apps/console-collector
+        pnpm test
+        
+    - name: Run environment check
+      run: |
+        cd apps/console-collector
+        pnpm check
+        
+    - name: Run integration test
+      run: |
+        cd apps/console-collector
+        pnpm test:integration
+        
+    - name: Test replay consistency
+      run: |
+        cd apps/console-collector
+        pnpm replay test-fixtures/sample-events.jsonl --strict
+        
+    - name: Test export-train
+      run: |
+        cd apps/console-collector
+        pnpm export-train --out data/test-train.json
+        
+    - name: Upload test results
+      uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: test-results-${{ matrix.node-version }}
+        path: |
+          apps/console-collector/coverage/
+          apps/console-collector/data/test-train.json
+        retention-days: 7
+        
+  build:
+    runs-on: ubuntu-latest
+    needs: test
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20.x
+        
+    - name: Setup pnpm
+      uses: pnpm/action-setup@v2
+      with:
+        version: 8
+        
+    - name: Install dependencies
+      run: pnpm install
+      
+    - name: Build all packages
+      run: pnpm build -r
+      
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: build-artifacts
+        path: |
+          apps/console-collector/dist/
+        retention-days: 30

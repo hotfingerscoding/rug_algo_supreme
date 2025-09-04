@@ -1,0 +1,29 @@
+{
+  "name": "@rugs-research/collector",
+  "version": "1.0.0",
+  "description": "Data collector for rugs.fun rounds",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "start": "node dist/index.js",
+    "dev:start": "HEADLESS=false node dist/index.js",
+    "clean": "rm -rf dist",
+    "type-check": "tsc --noEmit",
+    "export:csv": "node dist/scripts/export-csv.js",
+    "health": "ts-node src/health/run.ts"
+  },
+  "dependencies": {
+    "@playwright/test": "^1.40.0",
+    "@rugs-research/schema": "workspace:*",
+    "@rugs-research/shared": "workspace:*",
+    "better-sqlite3": "^12.2.0",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.8",
+    "@types/node": "^20.10.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.3.0"
+  }
+}

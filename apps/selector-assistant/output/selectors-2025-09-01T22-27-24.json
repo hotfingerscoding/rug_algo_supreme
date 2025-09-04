@@ -1,0 +1,28 @@
+{
+  "timestamp": "2025-09-01T22:27:24.034Z",
+  "selectors": {
+    "unknown": {
+      "selector": "div.standard-page-chart-container > div.standard-chart-container.border-neutral > canvas",
+      "score": 70,
+      "type": "css",
+      "description": "CSS path selector"
+    },
+    "multiplier": {
+      "selector": "div.trade-controls-amount-input-container > div.input-actions > div.control-buttons-container",
+      "score": 70,
+      "type": "css",
+      "description": "CSS path selector"
+    },
+    "players": {
+      "selector": "div.app-header.sticky-container.MuiBox-root.css-1oy4rvw > div.header-container.desktop-header > div.header-section-main",
+      "score": 70,
+      "type": "css",
+      "description": "CSS path selector"
+    }
+  },
+  "screenshots": [
+    "/Users/thiefhunk/Documents/cursor_builds/rug_algo_supreme/apps/selector-assistant/output/screenshots/unknown-1756765643663.png",
+    "/Users/thiefhunk/Documents/cursor_builds/rug_algo_supreme/apps/selector-assistant/output/screenshots/multiplier-1756765643858.png",
+    "/Users/thiefhunk/Documents/cursor_builds/rug_algo_supreme/apps/selector-assistant/output/screenshots/players-1756765643961.png"
+  ]
+}

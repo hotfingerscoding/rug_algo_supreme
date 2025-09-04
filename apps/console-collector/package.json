@@ -1,0 +1,35 @@
+{
+  "name": "console-collector",
+  "version": "1.0.0",
+  "description": "Console and WebSocket collector for rugs.fun",
+  "main": "dist/run.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/run.js",
+    "replay": "node dist/replay.js",
+    "analyze": "ts-node src/cli/analyze.ts",
+    "prune-data": "ts-node src/cli/prune.ts",
+    "health": "ts-node src/cli/health.ts",
+    "check": "ts-node src/cli/check.ts",
+    "test:integration": "ts-node src/cli/test-integration.ts",
+    "export-train": "ts-node src/cli/export-train.ts",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "export-train": "ts-node src/cli/export-train.ts"
+  },
+  "dependencies": {
+    "playwright": "^1.40.0",
+    "better-sqlite3": "^12.2.0",
+    "zod": "^3.22.4",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.0",
+    "ts-node": "^10.9.1",
+    "@types/node": "^20.10.0",
+    "@types/uuid": "^9.0.7",
+    "jest": "^29.7.0",
+    "@types/jest": "^29.5.8",
+    "ts-jest": "^29.1.1"
+  }
+}

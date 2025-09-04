@@ -1,0 +1,13 @@
+{
+  "cash_slippage_pct": 0.002,
+  "sidebet_payout": 5.0,
+  "sidebet_fee_pct": 0.02,
+  "cash_hold_dt_s": 2.0,
+  "future_gain_multiplier_if_survive": 1.15,
+  "safety_floor_x": 1.02,
+  "min_probability": 1e-6,
+  "max_probability": 0.999999,
+  "default_stake_pct": 0.01,
+  "max_stake_pct": 0.05,
+  "ev_threshold": 0.001
+}

@@ -1,0 +1,14 @@
+{
+  "lookback_rounds": 200,
+  "vol_low_threshold": 0.1,
+  "vol_high_threshold": 0.3,
+  "slope_low_threshold": 0.05,
+  "slope_high_threshold": 0.15,
+  "min_rounds_per_regime": 50,
+  "regime_names": {
+    "low_vol": "Low Volatility",
+    "normal": "Normal",
+    "high_vol": "High Volatility"
+  },
+  "description": "Market regime detection based on volatility and slope patterns from recent rounds"
+}

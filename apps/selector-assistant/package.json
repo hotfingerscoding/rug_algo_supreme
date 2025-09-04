@@ -1,0 +1,26 @@
+{
+  "name": "selector-assistant",
+  "version": "1.0.0",
+  "description": "Interactive selector discovery tool for rugs.fun",
+  "main": "src/run.ts",
+  "scripts": {
+    "start": "ts-node --transpile-only src/run.ts",
+    "test:selectors": "ts-node src/test.ts",
+    "build": "tsc",
+    "dev": "ts-node-dev src/run.ts"
+  },
+  "dependencies": {
+    "@playwright/test": "^1.40.0",
+    "playwright": "^1.40.0",
+    "glob": "^10.3.10"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.3.0",
+    "ts-node-dev": "^2.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

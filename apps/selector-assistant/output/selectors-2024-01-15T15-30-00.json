@@ -1,0 +1,42 @@
+{
+  "timestamp": "2024-01-15T15:30:00.123Z",
+  "selectors": {
+    "multiplier": {
+      "selector": "[data-testid='multiplier']",
+      "score": 90,
+      "type": "data",
+      "description": "Data attribute: testid=multiplier"
+    },
+    "timer": {
+      "selector": ".timer-display",
+      "score": 80,
+      "type": "class",
+      "description": "Stable class selector"
+    },
+    "players": {
+      "selector": "#player-count",
+      "score": 100,
+      "type": "id",
+      "description": "Unique ID selector"
+    },
+    "wager": {
+      "selector": ".total-wager .amount",
+      "score": 70,
+      "type": "css",
+      "description": "CSS path selector"
+    },
+    "status": {
+      "selector": ":has-text('LIVE')",
+      "score": 60,
+      "type": "text",
+      "description": "Text content: LIVE"
+    }
+  },
+  "screenshots": [
+    "apps/selector-assistant/output/screenshots/multiplier-1705332600000.png",
+    "apps/selector-assistant/output/screenshots/timer-1705332600000.png",
+    "apps/selector-assistant/output/screenshots/players-1705332600000.png",
+    "apps/selector-assistant/output/screenshots/wager-1705332600000.png",
+    "apps/selector-assistant/output/screenshots/status-1705332600000.png"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "timestamp": "2025-09-01T22:57:23.570Z",
+  "selectors": {
+    "unknown": {
+      "selector": ".standard-chart-container.border-neutral",
+      "score": 80,
+      "type": "class",
+      "description": "Stable class selector"
+    }
+  },
+  "screenshots": [
+    "/Users/thiefhunk/Documents/cursor_builds/rug_algo_supreme/apps/selector-assistant/output/screenshots/unknown-1756767443355.png"
+  ]
+}

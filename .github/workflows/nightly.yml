@@ -1,0 +1,117 @@
+name: Nightly Build
+
+on:
+  schedule:
+    # Run at 03:00 UTC daily
+    - cron: '0 3 * * *'
+  workflow_dispatch: # Allow manual triggering
+
+jobs:
+  nightly:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: |
+        npm install -g pnpm
+        pnpm install
+        
+    - name: Build packages
+      run: pnpm -w build
+      
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+        
+    - name: Install Python dependencies
+      run: |
+        cd apps/analyzer
+        pip install -r requirements.txt
+        
+    - name: Run training (if data available)
+      run: |
+        cd apps/analyzer
+        if [ -f "../data/rugs.sqlite" ]; then
+          echo "Database found, running training..."
+          python train.py || echo "Training failed but continuing..."
+        else
+          echo "No database found, skipping training"
+        fi
+        
+    - name: Create artifacts directory
+      run: mkdir -p artifacts
+      
+    - name: Archive models
+      run: |
+        if [ -d "models" ]; then
+          tar -czf artifacts/models.tar.gz models/
+          echo "Models archived"
+        else
+          echo "No models directory found"
+        fi
+        
+    - name: Archive exports
+      run: |
+        if [ -d "data/exports" ]; then
+          tar -czf artifacts/exports.tar.gz data/exports/
+          echo "Exports archived"
+        else
+          echo "No exports directory found"
+        fi
+        
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: nightly-artifacts
+        path: artifacts/
+        retention-days: 7
+        
+    - name: Send success notification
+      if: success() && env.ALERT_WEBHOOK_URL
+      run: |
+        curl -X POST "${{ env.ALERT_WEBHOOK_URL }}" \
+          -H "Content-Type: application/json" \
+          -d '{
+            "embeds": [{
+              "title": "✅ Nightly Build Success",
+              "description": "Nightly build completed successfully",
+              "color": 3066993,
+              "fields": [
+                {"name": "Repository", "value": "${{ github.repository }}", "inline": true},
+                {"name": "Commit", "value": "${{ github.sha }}", "inline": true},
+                {"name": "Timestamp", "value": "${{ github.event.head_commit.timestamp }}", "inline": true}
+              ]
+            }]
+          }'
+      env:
+        ALERT_WEBHOOK_URL: ${{ secrets.ALERT_WEBHOOK_URL }}
+        
+    - name: Send failure notification
+      if: failure() && env.ALERT_WEBHOOK_URL
+      run: |
+        curl -X POST "${{ env.ALERT_WEBHOOK_URL }}" \
+          -H "Content-Type: application/json" \
+          -d '{
+            "embeds": [{
+              "title": "❌ Nightly Build Failed",
+              "description": "Nightly build failed - check logs for details",
+              "color": 15158332,
+              "fields": [
+                {"name": "Repository", "value": "${{ github.repository }}", "inline": true},
+                {"name": "Commit", "value": "${{ github.sha }}", "inline": true},
+                {"name": "Workflow", "value": "${{ github.workflow }}", "inline": true}
+              ]
+            }]
+          }'
+      env:
+        ALERT_WEBHOOK_URL: ${{ secrets.ALERT_WEBHOOK_URL }}

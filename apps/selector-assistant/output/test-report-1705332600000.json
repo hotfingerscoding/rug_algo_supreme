@@ -1,0 +1,64 @@
+{
+  "timestamp": "2024-01-15T15:30:00.123Z",
+  "duration": 30,
+  "totalSelectors": 5,
+  "successfulSelectors": 5,
+  "overallSuccessRate": 96.7,
+  "results": [
+    {
+      "selector": "[data-testid='multiplier']",
+      "elementType": "multiplier",
+      "success": true,
+      "successRate": 100.0,
+      "totalAttempts": 30,
+      "successfulAttempts": 30,
+      "lastValue": "2.45x",
+      "lastAttempt": "2024-01-15T15:30:00.123Z",
+      "errors": []
+    },
+    {
+      "selector": ".timer-display",
+      "elementType": "timer",
+      "success": true,
+      "successRate": 96.7,
+      "totalAttempts": 30,
+      "successfulAttempts": 29,
+      "lastValue": "00:15",
+      "lastAttempt": "2024-01-15T15:30:00.123Z",
+      "errors": ["Element not visible during page transition"]
+    },
+    {
+      "selector": "#player-count",
+      "elementType": "players",
+      "success": true,
+      "successRate": 100.0,
+      "totalAttempts": 30,
+      "successfulAttempts": 30,
+      "lastValue": "1,250",
+      "lastAttempt": "2024-01-15T15:30:00.123Z",
+      "errors": []
+    },
+    {
+      "selector": ".total-wager .amount",
+      "elementType": "wager",
+      "success": true,
+      "successRate": 93.3,
+      "totalAttempts": 30,
+      "successfulAttempts": 28,
+      "lastValue": "$15,000.50",
+      "lastAttempt": "2024-01-15T15:30:00.123Z",
+      "errors": ["Element not found", "Element not visible"]
+    },
+    {
+      "selector": ":has-text('LIVE')",
+      "elementType": "status",
+      "success": true,
+      "successRate": 90.0,
+      "totalAttempts": 30,
+      "successfulAttempts": 27,
+      "lastValue": "LIVE",
+      "lastAttempt": "2024-01-15T15:30:00.123Z",
+      "errors": ["Text changed to 'COOLDOWN'", "Text changed to 'WAITING'", "Element not visible"]
+    }
+  ]
+}

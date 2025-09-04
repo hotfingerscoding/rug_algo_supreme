@@ -1,0 +1,34 @@
+{
+  "selectors": {
+    "multiplier": {
+      "selector": ".multiplier-value",
+      "confidence": 0.95,
+      "tested": true
+    },
+    "timer": {
+      "selector": ".game-timer",
+      "confidence": 0.92,
+      "tested": true
+    },
+    "players": {
+      "selector": ".player-count",
+      "confidence": 0.88,
+      "tested": true
+    },
+    "wager": {
+      "selector": ".total-wager",
+      "confidence": 0.90,
+      "tested": true
+    },
+    "status": {
+      "selector": ".game-status",
+      "confidence": 0.94,
+      "tested": true
+    }
+  },
+  "metadata": {
+    "timestamp": "2025-09-01T23:35:00Z",
+    "source": "selector-assistant",
+    "version": "1.0.0"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "timestamp": "2025-09-02T02:33:52.038Z",
+  "selectors": {
+    "unknown": {
+      "selector": "div.standard-page-container > div.standard-page-chart-container > div.standard-chart-container.border-neutral",
+      "score": 70,
+      "type": "css",
+      "description": "CSS path selector"
+    },
+    "players": {
+      "selector": ":has-text(\"BET0.001 SOL\")",
+      "score": 60,
+      "type": "text",
+      "description": "Text content: \"BET0.001 SOL\""
+    },
+    "multiplier": {
+      "selector": "div.buy-section > div.amount-input-section > div.trade-controls-amount-input-container",
+      "score": 70,
+      "type": "css",
+      "description": "CSS path selector"
+    }
+  },
+  "screenshots": [
+    "/Users/thiefhunk/Documents/cursor_builds/rug_algo_supreme/apps/selector-assistant/output/screenshots/unknown-1756780431195.png",
+    "/Users/thiefhunk/Documents/cursor_builds/rug_algo_supreme/apps/selector-assistant/output/screenshots/multiplier-1756780431898.png"
+  ]
+}
